@@ -90,6 +90,10 @@ kt_setfreq(double frequency)
 	tx.freq = (long)floor(frequency * (65536 * 1e6));
 	errno = 0;
 	i = ntp_adjtime(&tx);
+	if(i == -1 && errno == EPERM) {
+		Fail(NULL, 0, "Insufficient permissions");
+	}
+
 	/* XXX: what is the correct error test here ? */
 	assert(i >= 0);
 }
