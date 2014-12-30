@@ -44,6 +44,10 @@
  */
 
 #include <math.h>
+#ifndef NAN /* Portability */
+#define NAN (INFINITY-INFINITY)
+#endif
+
 #include <stdlib.h>
 #include <string.h>
 
